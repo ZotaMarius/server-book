@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 var c= builder.Configuration.GetConnectionString("DefaultConnection");
 // Add database context
 builder.Services.AddDbContext<BookstoreContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add Basic Authentication
 builder.Services.AddAuthentication("BasicAuthentication")
