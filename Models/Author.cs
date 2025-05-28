@@ -9,17 +9,15 @@ public class Author
     public int Id { get; set; }
 
     [Required]
-    [StringLength(100)]
+    [MaxLength(100)] // Prefer MaxLength over StringLength for EF Core
     public string Name { get; set; } = string.Empty;
 
-    [StringLength(200)]
+    [MaxLength(200)]
     public string? Biography { get; set; }
 
-    [StringLength(100)]
+    [MaxLength(100)]
     public string? Country { get; set; }
 
-    // Navigation property for the books by this author
-    // Using JsonIgnore is one approach to prevent circular references
     [JsonIgnore]
     public ICollection<Book> Books { get; set; } = new List<Book>();
 }

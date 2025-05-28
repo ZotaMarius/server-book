@@ -10,13 +10,12 @@ public class Genre
     public int Id { get; set; }
 
     [Required]
-    [StringLength(50)]
+    [MaxLength(50)] // Use MaxLength for PostgreSQL compatibility
     public string Name { get; set; } = string.Empty;
 
-    [StringLength(200)]
+    [MaxLength(200)]
     public string? Description { get; set; }
 
-    // Navigation property for the many-to-many relationship
-    [JsonIgnore] // Prevent circular references in JSON serialization
+    [JsonIgnore] // Avoid circular reference during JSON serialization
     public ICollection<Book> Books { get; set; } = new List<Book>();
 }
